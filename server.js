@@ -17,14 +17,12 @@ app.get('/api/turbovote', (req, response) => {
   };
   const url = 'https://api.turbovote.org/elections/upcoming?district-divisions=ocd-division/country:us/state:tx';
   https.get(url, options, (res) => {
-    
-    let data = '';
-  
-    // A chunk of data has been recieved.
-    res.on('data', (chunk) => {
-      data += chunk;
-      response.json({ data: data })
-    });
+    const bodyChunks = [];
+    res
+      .on('data', chunk => {
+        bodyChunks.push(chunk);
+      })
+      .on('end', () => response.send(Buffer.concat(bodyChunks)));
   
   }).on("error", (err) => {
     console.log("Error: " + err.message);
