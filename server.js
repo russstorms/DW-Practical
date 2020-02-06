@@ -9,20 +9,21 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-app.get('/api/turbovote', function(req, response){
-  https.get('https://api.turbovote.org/elections/upcoming?district-divisions=ocd-division/country:us/state:co', (res) => {
+app.get('/api/turbovote', (req, response) => {
+  const options = {
+    headers: {
+      'Accept': 'application/json'
+    }
+  };
+  const url = 'https://api.turbovote.org/elections/upcoming?district-divisions=ocd-division/country:us/state:tx';
+  https.get(url, options, (res) => {
+    
     let data = '';
-    console.log('statusCode:', res.statusCode);
   
     // A chunk of data has been recieved.
     res.on('data', (chunk) => {
       data += chunk;
-    });
-  
-    // The whole response has been received. Print out the result.
-    res.on('end', () => {
-      console.log(data)
-      response.write(data)
+      response.json({ data: data })
     });
   
   }).on("error", (err) => {

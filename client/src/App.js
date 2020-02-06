@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 // Styles
-import logo from './logo.svg';
 import './App.css';
 
 const App = () => {
   const [post, setPost] = useState('')
+  const [elections, setElections] = useState([])
 
   // Get API
   useEffect(() => {
@@ -13,17 +13,14 @@ const App = () => {
       // Load the response
       const response = await fetch('/api/turbovote', {
         method: "GET",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "application/json"
-        }
       });
       const body = await response.json();
-      console.log(body)
+      const json = JSON.parse(body.data);
+      console.log(json)
       // Error handler
       if (response.status !== 200) throw Error('Error');
 
-      // setResponse(body.message)
+      setElections(json)
     }
     getApi()
   }, [])
@@ -44,25 +41,12 @@ const App = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Democracy Works!</h1>
       </header>
+      <h2>Find Elections Near You</h2>
       <form
         // onSubmit={handleSubmit}
       >
-        <p>
-          <strong>Post to Server:</strong>
-        </p>
         <input
           type="text"
           value={post}
@@ -70,6 +54,7 @@ const App = () => {
         />
         <button type="submit">Submit</button>
       </form>
+      {/* {elections} */}
     </div>
   );
 }
