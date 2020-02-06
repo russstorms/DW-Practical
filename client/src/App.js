@@ -51,11 +51,14 @@ const App = () => {
     const state = stateField.toLowerCase();
     const city = cityField.toLowerCase().replace(/ /g,"_");
 
-    const proxyUrl = `./api/turbovote/state/${state}/place/${city}`;
+    const cityCheck = city && city!=="" ? `/place/${city}` : '';
+
+    const proxyUrl = `/api/turbovote/state/${state}${cityCheck}`;
+    console.log(proxyUrl)
 
     const response = await fetch(proxyUrl)
     const body = await response.json();
-    console.log(body)
+    // console.log(body)
 
     // Error handler
     if (response.status !== 200) throw Error('Error');
