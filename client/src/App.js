@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react';
 
+import states from './us_states';
+
 // Styles
 import './App.css';
 
 const App = () => {
+  // Form fields tied to state
   const [streetField, setStreetField] = useState('')
   const [streetFieldTwo, setStreetFieldTwo] = useState('')
   const [cityField, setCityField] = useState('')
   const [stateField, setStateField] = useState('')
   const [zipField, setZipField] = useState('')
-  const [elections, setElections] = useState('')
+
+  const [elections, setElections] = useState([])
 
   // Get API
   // useEffect(() => {
@@ -23,7 +27,15 @@ const App = () => {
 
   //   })();
   // }, [])
-  
+
+  const stateMapper = () => {
+    let options = []
+    states.map((state, idx) => {
+      options.push(<option key={idx}>{state}</option>)
+    })
+    return options
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await fetch('/api/turbovote', {
@@ -79,10 +91,11 @@ const App = () => {
           <select
             name="state"
             id="state-field"
-            type="text"
             value={stateField}
             onChange={e => setStateField(e.target.value)}
-          />
+          >
+            {stateMapper()}
+          </select>
 
           <label htmlFor="zip-field">Zip:</label>
           <input
