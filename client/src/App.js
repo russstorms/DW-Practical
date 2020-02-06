@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-
+import React, { useState } from 'react';
 import states from './us_states';
 
 // Styles
@@ -7,54 +6,34 @@ import './App.css';
 
 const App = () => {
   // Form fields tied to state
-  const [streetField, setStreetField] = useState('')
-  const [streetFieldTwo, setStreetFieldTwo] = useState('')
-  const [cityField, setCityField] = useState('')
-  const [stateField, setStateField] = useState('AL')
-  const [zipField, setZipField] = useState('')
+  const [streetField, setStreetField] = useState('');
+  const [streetFieldTwo, setStreetFieldTwo] = useState('');
+  const [cityField, setCityField] = useState('');
+  const [stateField, setStateField] = useState('AL');
+  const [zipField, setZipField] = useState('');
 
-  const [elections, setElections] = useState([])
+  // Elections state
+  const [elections, setElections] = useState([]);
 
-  // Get API
-  // useEffect(() => {
-  //   (async () => {
-  //     // Load the response
-  //     const response = await fetch('/api/turbovote').catch(err => console.log(err))
-  //     const body = await response.json();
-  //     console.log(body);
-  //     // Error handler
-  //     if (response.status !== 200) throw Error('Error');
-
-  //   })();
-  // }, [])
-
-  // const response = await fetch('/api/turbovote', {
-    //   method: "GET",
-    // });
-    // console.log(response, odcID)
-    //   const body = await response.json();
-    //   const json = JSON.parse(body.data);
-      // console.log(json)
-      // Error handler
-      // if (response.status !== 200) throw Error('Error');
-
-      // setElections(json)
-
+  // Map out state abbreviations to form select options
   const stateOptionMapper = () => {
     return states.map((stateAbbr, idx) => {
       return <option key={idx}>{stateAbbr}</option>
     });
   };
 
+  // Form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // Manipulate string state to proper OCD-ID format
     const state = stateField.toLowerCase();
     const city = cityField.toLowerCase().replace(/ /g,"_");
 
     const cityCheck = city && city!=="" ? `&place=${city}` : '';
     const proxyUrl = `/api/turbovote?state=${state}${cityCheck}`;
 
-    const response = await fetch(proxyUrl)
+    // Fetch to backend
+    const response = await fetch(proxyUrl);
     const body = await response.json();
 
     setElections(body)
@@ -72,8 +51,8 @@ const App = () => {
       return (
         <h4 key={idx}>{election.description}</h4>
       )
-    })
-  }
+    });
+  };
   
   return (
     <div className="App">

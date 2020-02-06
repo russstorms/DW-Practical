@@ -13,14 +13,16 @@ app.get('/api/turbovote', (req, response) => {
   const {state, place} = req.query;
 
   const placeCheck = place && place!=="" ? `/place:${place}` : '';
-  const ocdID=`ocd-division/country:us/state:${state}${placeCheck}`;
+
+  const stateOcdID = `ocd-division/country:us/state:${state}`;
+  const cityOcdId = `ocd-division/country:us/state:${state}${placeCheck}`;
   
   const options = {
     headers: {
       'Accept': 'application/json'
     }
   };
-  const url = `https://api.turbovote.org/elections/upcoming?district-divisions=${ocdID}`;
+  const url = `https://api.turbovote.org/elections/upcoming?district-divisions=${stateOcdID},${cityOcdId}`;
   // console.log(url)
   https.get(url, options, (res) => {
     const bodyChunks = [];
