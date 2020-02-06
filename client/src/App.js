@@ -28,9 +28,9 @@ const App = () => {
   //   })();
   // }, [])
 
-  const stateMapper = () => {
-    return states.map((state, idx) => {
-      return <option key={idx}>{state}</option>
+  const stateOptionMapper = () => {
+    return states.map((stateAbbr, idx) => {
+      return <option key={idx}>{stateAbbr}</option>
     })
   }
 
@@ -92,7 +92,7 @@ const App = () => {
             value={stateField}
             onChange={e => setStateField(e.target.value)}
           >
-            {stateMapper()}
+            {stateOptionMapper()}
           </select>
 
           <label htmlFor="zip-field">Zip:</label>
