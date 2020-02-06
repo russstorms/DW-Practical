@@ -53,10 +53,16 @@ const App = () => {
 
     const proxyUrl = `./api/turbovote/state/${state}/place/${city}`;
 
-    fetch(proxyUrl)
-      .then(response => {
-        console.log(response)
-      })
+    const response = await fetch(proxyUrl)
+    const body = await response.json();
+    console.log(body)
+
+    // Error handler
+    if (response.status !== 200) throw Error('Error');
+    // Check if response is empty
+    if (body.length === 0) {
+      alert('No elections near your address')
+    }
   };
   
   return (
