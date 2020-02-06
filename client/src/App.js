@@ -51,9 +51,9 @@ const App = () => {
     const state = stateField.toLowerCase();
     const city = cityField.toLowerCase().replace(/ /g,"_");
 
-    const cityCheck = city && city!=="" ? `/place/${city}` : '';
+    const cityCheck = city && city!=="" ? `&place=${city}` : '';
 
-    const proxyUrl = `/api/turbovote/state/${state}${cityCheck}`;
+    const proxyUrl = `/api/turbovote?state=${state}${cityCheck}`;
     console.log(proxyUrl)
 
     const response = await fetch(proxyUrl)
