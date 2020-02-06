@@ -5,7 +5,7 @@ import logo from './logo.svg';
 import './App.css';
 
 const App = () => {
-  const [response, setResponse] = useState('')
+  // const [response, setResponse] = useState('')
   const [post, setPost] = useState('')
   const [responseToPost, setResponseToPost] = useState('')
 
