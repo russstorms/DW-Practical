@@ -8,35 +8,35 @@ const App = () => {
   const [elections, setElections] = useState([])
 
   // Get API
-  useEffect(() => {
-    async function getApi() {
-      // Load the response
-      const response = await fetch('/api/turbovote', {
-        method: "GET",
-      });
+  // useEffect(() => {
+  //   async function getApi() {
+  //     // Load the response
+  //     const response = await fetch('/api/turbovote', {
+  //       method: "GET",
+  //     });
+  //     const body = await response.json();
+  //     const json = JSON.parse(body.data);
+  //     console.log(json)
+  //     // Error handler
+  //     if (response.status !== 200) throw Error('Error');
+
+  //     setElections(json)
+  //   }
+  //   getApi()
+  // }, [])
+  
+  const handleSubmit = async e => {
+    e.preventDefault();
+    const response = await fetch('/api/turbovote', {
+      method: "GET",
+    });
       const body = await response.json();
       const json = JSON.parse(body.data);
       console.log(json)
       // Error handler
       if (response.status !== 200) throw Error('Error');
 
-      setElections(json)
-    }
-    getApi()
-  }, [])
-  
-  // const handleSubmit = async e => {
-  //   e.preventDefault();
-  //   const response = await fetch('/api/hello', {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //   });
-  //   const body = await response.json();
-
-  //   setResponseToPost(body.message)
-  // };
+  };
   
   return (
     <div className="App">
@@ -45,7 +45,7 @@ const App = () => {
       </header>
       <h2>Find Elections Near You</h2>
       <form
-        // onSubmit={handleSubmit}
+        onSubmit={handleSubmit}
       >
         <input
           type="text"
