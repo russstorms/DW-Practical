@@ -10,7 +10,7 @@ const App = () => {
   const [streetField, setStreetField] = useState('')
   const [streetFieldTwo, setStreetFieldTwo] = useState('')
   const [cityField, setCityField] = useState('')
-  const [stateField, setStateField] = useState('')
+  const [stateField, setStateField] = useState('AL')
   const [zipField, setZipField] = useState('')
 
   const [elections, setElections] = useState([])
@@ -28,18 +28,10 @@ const App = () => {
   //   })();
   // }, [])
 
-  const stateOptionMapper = () => {
-    return states.map((stateAbbr, idx) => {
-      return <option key={idx}>{stateAbbr}</option>
-    })
-  }
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log(e)
-    // const response = await fetch('/api/turbovote', {
+  // const response = await fetch('/api/turbovote', {
     //   method: "GET",
     // });
+    // console.log(response, odcID)
     //   const body = await response.json();
     //   const json = JSON.parse(body.data);
       // console.log(json)
@@ -47,6 +39,18 @@ const App = () => {
       // if (response.status !== 200) throw Error('Error');
 
       // setElections(json)
+
+  const stateOptionMapper = () => {
+    return states.map((stateAbbr, idx) => {
+      return <option key={idx}>{stateAbbr}</option>
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const odcID = `district-divisions=ocd-division/country:us/state:${stateField.toLowerCase()}/place:${cityField}`
+    console.log(odcID)
+
   };
   
   return (

@@ -10,12 +10,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.get('/api/turbovote', (req, response) => {
+  const odcID = req.name
   const options = {
     headers: {
       'Accept': 'application/json'
     }
   };
-  const url = 'https://api.turbovote.org/elections/upcoming?district-divisions=ocd-division/country:us/state:ca';
+  const url = `https://api.turbovote.org/elections/upcoming?${odcID}`;
   https.get(url, options, (res) => {
     const bodyChunks = [];
     res
