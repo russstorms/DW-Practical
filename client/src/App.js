@@ -54,6 +54,7 @@ const App = () => {
         <h1>Democracy Works!</h1>
       </header>
       <h2>Find Elections Near You</h2>
+      <p>Enter the address where you are registered to vote</p>
       <form
         onSubmit={handleSubmit}
       >
@@ -114,25 +115,3 @@ const App = () => {
 
 export default App;
 
-{/* <p>Enter the address where you are registered to vote</p>
-<div>
-  <label for="street-field">Street:</label>
-  <input id="street-field" name="street" type="text">
-</div>
-<div>
-  <label for="street-2-field">Street 2:</label>
-  <input id="street-2-field" name="street-2" type="text">
-</div>
-<div>
-  <label for="city-field">City:</label>
-  <input id="city-field" name="city" type="text">
-
-  <label for="state-field">State:</label>
-  <select id="state-field" name="state">
-    <option></option>
-    {{#each states}}
-      <option value="{{this}}">{{this}}</option>
-    {{/each}}
-  </select>
-  <label for="zip-field">ZIP:</label>
-  <input id="zip-field" name="zip" size="10" type="text"> */}
