@@ -22,6 +22,31 @@ const App = () => {
     });
   };
 
+  // Map elections
+  const electionMapper = () => {
+    return elections.map((election, idx) => {
+      const date = (new Date(election.date).toString().slice(0, 15))
+      const votingMethods = election['district-divisions'][0]['voting-methods']
+
+      const testMethods = votingMethods.map((method) => {
+        return method.primary ? 
+        <p>Type: {method.type}</p>
+        : 
+        null
+      })
+
+      return (
+        <div className="election">
+          <h4 key={idx}>{election.description}</h4>
+          <p>{date}</p>
+          <div>
+            {testMethods}
+          </div>
+        </div>
+      )
+    });
+  };
+
   // Form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,14 +71,6 @@ const App = () => {
     }
   };
 
-  const electionMapper = () => {
-    return elections.map((election, idx) => {
-      return (
-        <h4 key={idx}>{election.description}</h4>
-      )
-    });
-  };
-  
   return (
     <div className="App">
       <header className="App-header">
@@ -112,10 +129,9 @@ const App = () => {
             onChange={e => setZipField(e.target.value)}
           />
         </div>
-
         <button type="submit">Submit</button>
       </form>
-      <div>
+      <div className="Elections">
         {electionMapper()}
       </div>
     </div>

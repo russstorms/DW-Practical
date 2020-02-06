@@ -42,3 +42,12 @@
 label, input {
   margin: 10px;
 }
+
+
+.Elections {
+  display: flex;
+}
+
+.election {
+  padding: 15px;
+}
