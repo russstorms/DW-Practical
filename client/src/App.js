@@ -52,13 +52,12 @@ const App = () => {
     const city = cityField.toLowerCase().replace(/ /g,"_");
 
     const cityCheck = city && city!=="" ? `&place=${city}` : '';
-
     const proxyUrl = `/api/turbovote?state=${state}${cityCheck}`;
-    console.log(proxyUrl)
 
     const response = await fetch(proxyUrl)
     const body = await response.json();
-    // console.log(body)
+
+    setElections(body)
 
     // Error handler
     if (response.status !== 200) throw Error('Error');
@@ -67,6 +66,14 @@ const App = () => {
       alert('No elections near your address')
     }
   };
+
+  const electionMapper = () => {
+    return elections.map((election, idx) => {
+      return (
+        <h4 key={idx}>{election.description}</h4>
+      )
+    })
+  }
   
   return (
     <div className="App">
@@ -129,7 +136,9 @@ const App = () => {
 
         <button type="submit">Submit</button>
       </form>
-      {/* <h5>{elections}</h5> */}
+      <div>
+        {electionMapper()}
+      </div>
     </div>
   );
 }
