@@ -5,9 +5,7 @@ import logo from './logo.svg';
 import './App.css';
 
 const App = () => {
-  // const [response, setResponse] = useState('')
   const [post, setPost] = useState('')
-  const [responseToPost, setResponseToPost] = useState('')
 
   // Get API
   useEffect(() => {
@@ -20,9 +18,10 @@ const App = () => {
           "Content-Type": "application/json"
         }
       });
-      console.log(response)
+      const body = await response.json();
+      console.log(body)
       // Error handler
-      // if (response.status !== 200) throw Error(body.message);
+      if (response.status !== 200) throw Error('Error');
 
       // setResponse(body.message)
     }
@@ -71,7 +70,6 @@ const App = () => {
         />
         <button type="submit">Submit</button>
       </form>
-      <p>{responseToPost}</p>
     </div>
   );
 }
