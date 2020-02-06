@@ -15,7 +15,7 @@ app.get('/api/turbovote', (req, response) => {
       'Accept': 'application/json'
     }
   };
-  const url = 'https://api.turbovote.org/elections/upcoming?district-divisions=ocd-division/country:us/state:tx';
+  const url = 'https://api.turbovote.org/elections/upcoming?district-divisions=ocd-division/country:us/state:ca';
   https.get(url, options, (res) => {
     const bodyChunks = [];
     res

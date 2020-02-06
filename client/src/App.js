@@ -16,6 +16,7 @@ const App = () => {
       console.log(body);
       // Error handler
       if (response.status !== 200) throw Error('Error');
+
     })();
   }, [])
   
@@ -49,7 +50,7 @@ const App = () => {
         />
         <button type="submit">Submit</button>
       </form>
-      {/* {elections} */}
+      {/* <h5>{elections}</h5> */}
     </div>
   );
 }
