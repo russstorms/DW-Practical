@@ -36,6 +36,7 @@ const App = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(e)
     // const response = await fetch('/api/turbovote', {
     //   method: "GET",
     // });
@@ -101,6 +102,7 @@ const App = () => {
             name="zip"
             id="zip-field"
             type="text"
+            pattern="[0-9]*"
             value={zipField}
             onChange={e => setZipField(e.target.value)}
           />
