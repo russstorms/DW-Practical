@@ -29,25 +29,23 @@ const App = () => {
   // }, [])
 
   const stateMapper = () => {
-    let options = []
-    states.map((state, idx) => {
-      options.push(<option key={idx}>{state}</option>)
+    return states.map((state, idx) => {
+      return <option key={idx}>{state}</option>
     })
-    return options
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch('/api/turbovote', {
-      method: "GET",
-    });
-      const body = await response.json();
-      const json = JSON.parse(body.data);
-      console.log(json)
+    // const response = await fetch('/api/turbovote', {
+    //   method: "GET",
+    // });
+    //   const body = await response.json();
+    //   const json = JSON.parse(body.data);
+      // console.log(json)
       // Error handler
-      if (response.status !== 200) throw Error('Error');
+      // if (response.status !== 200) throw Error('Error');
 
-      setElections(json)
+      // setElections(json)
   };
   
   return (
