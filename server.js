@@ -10,9 +10,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.get('/api/turbovote/state/:state/place/:place', (req, response) => {
-  const {stateField, placeField} = req.params;
-  console.log(stateField, placeField)
-  const odcID=`odc-division/country:us/state:${stateField}/place:${placeField}`;
+  const {state, place} = req.params;
+  const odcID=`odc-division/country:us/state:${state}/place:${place}`;
 
   const options = {
     headers: {
@@ -20,7 +19,7 @@ app.get('/api/turbovote/state/:state/place/:place', (req, response) => {
     }
   };
   const url = `https://api.turbovote.org/elections/upcoming?district-divisions=${odcID}`;
-
+  console.log(url)
   https.get(url, options, (res) => {
     const bodyChunks = [];
     res

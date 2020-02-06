@@ -48,8 +48,11 @@ const App = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const proxyUrl = `./api/turbovote/state/${stateField.toLowerCase()}/place/${cityField}`;
-    // console.log(odcID)
+    const state = stateField.toLowerCase();
+    const city = cityField.toLowerCase().replace(/ /g,"_");
+
+    const proxyUrl = `./api/turbovote/state/${state}/place/${city}`;
+
     fetch(proxyUrl)
       .then(response => {
         console.log(response)
