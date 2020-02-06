@@ -22,12 +22,12 @@ app.get('/api/turbovote', function(req, response){
     // The whole response has been received. Print out the result.
     res.on('end', () => {
       console.log(data)
+      response.write(data)
     });
   
   }).on("error", (err) => {
     console.log("Error: " + err.message);
   });
-  
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
