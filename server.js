@@ -9,14 +9,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-app.get('/api/turbovote', (req, response) => {
-  const odcID = req.name
+app.get('/api/turbovote/state/:state/place/:place', (req, response) => {
+  const {stateField, placeField} = req.params;
+  console.log(stateField, placeField)
+  const odcID=`odc-division/country:us/state:${stateField}/place:${placeField}`;
+
   const options = {
     headers: {
       'Accept': 'application/json'
     }
   };
-  const url = `https://api.turbovote.org/elections/upcoming?${odcID}`;
+  const url = `https://api.turbovote.org/elections/upcoming?district-divisions=${odcID}`;
+
   https.get(url, options, (res) => {
     const bodyChunks = [];
     res

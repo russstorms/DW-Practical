@@ -48,9 +48,12 @@ const App = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const odcID = `district-divisions=ocd-division/country:us/state:${stateField.toLowerCase()}/place:${cityField}`
-    console.log(odcID)
-
+    const proxyUrl = `./api/turbovote/state/${stateField.toLowerCase()}/place/${cityField}`;
+    // console.log(odcID)
+    fetch(proxyUrl)
+      .then(response => {
+        console.log(response)
+      })
   };
   
   return (
