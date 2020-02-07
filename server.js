@@ -12,18 +12,22 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/api/turbovote', (req, response) => {
   const {state, place} = req.query;
 
+  // Check if city comes through the request
   const placeCheck = place && place!=="" ? `/place:${place}` : '';
 
-  const stateOcdID = `ocd-division/country:us/state:${state}`;
-  const cityOcdId = `ocd-division/country:us/state:${state}${placeCheck}`;
+  // OCD-ID's
+  const stateOCD_ID = `ocd-division/country:us/state:${state}`;
+  const cityOCD_ID = `ocd-division/country:us/state:${state}${placeCheck}`;
   
+  // Convert to JSON from EDN
   const options = {
     headers: {
       'Accept': 'application/json'
     }
   };
-  const url = `https://api.turbovote.org/elections/upcoming?district-divisions=${stateOcdID},${cityOcdId}`;
-  // console.log(url)
+
+  // URL with appended OCD-ID's
+  const url = `https://api.turbovote.org/elections/upcoming?district-divisions=${stateOCD_ID},${cityOCD_ID}`;
   https.get(url, options, (res) => {
     const bodyChunks = [];
     res
