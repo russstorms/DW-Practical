@@ -1,5 +1,5 @@
 # Democracy Works 
-![Democracy Works](/App_Screenshot.png)
+![Democracy Works](/App_ScreenShot.png)
 
 
 ## Setup
