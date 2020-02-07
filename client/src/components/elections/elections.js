@@ -34,12 +34,14 @@ const Elections = ({elections}) => {
               <a
                 href={calendar}
                 target="_blank"
+                rel="noopener noreferrer"
                 title={election.description}>
                   Election Dates
               </a>
               <a
                 href={website}
                 target="_blank"
+                rel="noopener noreferrer"
                 title={election.description}>
                   More Info
               </a>
