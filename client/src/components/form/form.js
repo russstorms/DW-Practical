@@ -1,20 +1,16 @@
 import React, { useState } from 'react';
-import Elections from '../elections/elections';
 import states from '../../us_states';
 
 // Styles
 import './styles/form.css'
 
-const Form = () => {
+const Form = ({setElections}) => {
   // Form fields tied to state
   const [streetField, setStreetField] = useState('');
   const [streetFieldTwo, setStreetFieldTwo] = useState('');
   const [cityField, setCityField] = useState('');
   const [stateField, setStateField] = useState('AL');
   const [zipField, setZipField] = useState('');
-
-  // Elections state
-  const [elections, setElections] = useState([]);
 
   // Map out state abbreviations to form select options
   const stateOptionMapper = () => {
@@ -104,9 +100,6 @@ const Form = () => {
         </div>
         <button type="submit">Submit</button>
       </form>
-      <Elections
-        electionsState={elections}
-      />
     </div>
   );
 }

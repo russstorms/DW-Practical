@@ -4,11 +4,11 @@ import uuid from 'uuid/v4';
 // Styles
 import './styles/elections.css'
 
-const Elections = ({electionsState}) => {
+const Elections = ({elections}) => {
 
   // Map elections
   const electionMapper = () => {
-    return electionsState.map((election) => {
+    return elections.map((election) => {
       console.log(election);
       const date = (new Date(election.date).toString().slice(0, 15));
       let votingMethods = election['district-divisions'][0]['voting-methods'];
