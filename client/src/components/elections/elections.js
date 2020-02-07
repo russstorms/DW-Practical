@@ -9,7 +9,7 @@ const Elections = ({electionsState}) => {
   // Map elections
   const electionMapper = () => {
     return electionsState.map((election) => {
-      // console.log(election);
+      console.log(election);
       const date = (new Date(election.date).toString().slice(0, 15));
       let votingMethods = election['district-divisions'][0]['voting-methods'];
       const calendar = election.source.notes;
