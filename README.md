@@ -9,7 +9,7 @@ In the project directory, change directory to /client, run:
 ### `npm install`
 
 Installs dependencies for the Client (React app).<br />
-Go up a directory to the root, run
+Go up a directory to the root, run:
 
 ### `npm install`
 
