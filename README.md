@@ -1,6 +1,9 @@
 # Democracy Works 
 ![Democracy Works](/App_ScreenShot.png)
+## What is it?
 
+This repo contains a Node server that accesses one of [Democracy Works](https://www.democracy.works) public API,<br />
+and retrives elections based on the form inputs from a React frontend!
 
 ## Setup
 
