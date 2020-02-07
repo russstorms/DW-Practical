@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import states from './us_states';
+import uuid from 'uuid/v4';
 
 // Styles
 import './App.css';
@@ -24,24 +25,31 @@ const App = () => {
 
   // Map elections
   const electionMapper = () => {
-    return elections.map((election, idx) => {
-      console.log(election)
-      const date = (new Date(election.date).toString().slice(0, 15))
-      const votingMethods = election['district-divisions'][0]['voting-methods']
+    return elections.map((election) => {
+      console.log(election);
+      const date = (new Date(election.date).toString().slice(0, 15));
+      const votingMethods = election['district-divisions'][0]['voting-methods'];
+      const calendar = election.source.notes;
+      const website = election['polling-place-url-shortened'];
+      
 
-      const testMethods = votingMethods.map((method) => {
+      const testMethods = votingMethods.map((method, key) => {
         return method.primary ? 
-        <p>Type: {method.type}</p>
+        <p key={uuid()}>Type: {method.type}</p>
         : 
         null
       })
 
       return (
-        <div className="election">
-          <h4 key={idx}>{election.description}</h4>
+        <div key={uuid()}className="election">
+          <h4>{election.description}</h4>
           <p>{date}</p>
+          <div>{testMethods}</div>
           <div>
-            {testMethods}
+            <a href={calendar} target="_blank" title={election.description}>Election Dates</a>
+          </div>
+          <div>
+            <a href={website} target="_blank" title={election.description}>More Info</a>
           </div>
         </div>
       )
