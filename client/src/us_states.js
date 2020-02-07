@@ -1,3 +1,4 @@
+// State abbr to map as form options
 const state_abbreviations = [
   "AL", "AK", "AS", "AZ", "AR", "AE", "AA", "AP",
   "CA", "CO", "CT", "DE", "DC", "FM", "FL", "GA",
@@ -9,4 +10,5 @@ const state_abbreviations = [
   "VA", "WA", "WV", "WI", "WY"
 ];
 
-module.exports = state_abbreviations;
+
+export default state_abbreviations;

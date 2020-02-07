@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import states from './us_states';
-import uuid from 'uuid/v4';
+import Elections from '../elections/elections';
+import states from '../../us_states';
 
 // Styles
-import './App.css';
+import './styles/form.css'
 
-const App = () => {
+const Form = () => {
   // Form fields tied to state
   const [streetField, setStreetField] = useState('');
   const [streetFieldTwo, setStreetFieldTwo] = useState('');
@@ -23,39 +23,6 @@ const App = () => {
     });
   };
 
-  // Map elections
-  const electionMapper = () => {
-    return elections.map((election) => {
-      console.log(election);
-      const date = (new Date(election.date).toString().slice(0, 15));
-      const votingMethods = election['district-divisions'][0]['voting-methods'];
-      const calendar = election.source.notes;
-      const website = election['polling-place-url-shortened'];
-      
-
-      const testMethods = votingMethods.map((method, key) => {
-        return method.primary ? 
-        <p key={uuid()}>Type: {method.type}</p>
-        : 
-        null
-      })
-
-      return (
-        <div key={uuid()}className="election">
-          <h4>{election.description}</h4>
-          <p>{date}</p>
-          <div>{testMethods}</div>
-          <div>
-            <a href={calendar} target="_blank" title={election.description}>Election Dates</a>
-          </div>
-          <div>
-            <a href={website} target="_blank" title={election.description}>More Info</a>
-          </div>
-        </div>
-      )
-    });
-  };
-
   // Form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -68,23 +35,20 @@ const App = () => {
 
     // Fetch to backend
     const response = await fetch(proxyUrl);
-    const body = await response.json();
+    const arrayOfElections = await response.json();
 
-    setElections(body)
+    setElections(arrayOfElections)
 
     // Error handler
     if (response.status !== 200) throw Error('Error');
     // Check if response is empty
-    if (body.length === 0) {
+    if (arrayOfElections.length === 0) {
       alert('No elections near your address')
     }
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Democracy Works!</h1>
-      </header>
+    <div className="Form">
       <h2>Find Elections Near You</h2>
       <p>Enter the address where you are registered to vote</p>
       <form
@@ -140,12 +104,12 @@ const App = () => {
         </div>
         <button type="submit">Submit</button>
       </form>
-      <div className="Elections">
-        {electionMapper()}
-      </div>
+      <Elections
+        electionsState={elections}
+      />
     </div>
   );
 }
 
-export default App;
+export default Form;
 

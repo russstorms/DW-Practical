@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #00A0BD;
   min-height: 50%;
   display: flex;
   flex-direction: column;
@@ -23,6 +23,10 @@
   font-size: calc(10px + 2vmin);
   color: white;
   padding-bottom: 10px;
+}
+
+.App-header h1 span {
+  font-weight: 900;
 }
 
 .App-link {
@@ -38,15 +42,3 @@
   }
 }
 
-label, input {
-  margin: 10px;
-}
-
-
-.Elections {
-  display: flex;
-}
-
-.election {
-  padding: 15px;
-}

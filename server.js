@@ -36,6 +36,7 @@ app.get('/api/turbovote', (req, response) => {
       })
       .on('end', () => response.send(Buffer.concat(bodyChunks)));
   
+    // Error handler
   }).on("error", (err) => {
     console.log("Error: " + err.message);
   });
