@@ -25,6 +25,7 @@ const App = () => {
   // Map elections
   const electionMapper = () => {
     return elections.map((election, idx) => {
+      console.log(election)
       const date = (new Date(election.date).toString().slice(0, 15))
       const votingMethods = election['district-divisions'][0]['voting-methods']
 
